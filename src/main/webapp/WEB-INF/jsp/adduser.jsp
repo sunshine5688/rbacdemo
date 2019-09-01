@@ -19,8 +19,8 @@
         <input id="password" type="password" name="password"/><br/>
         <label for="username">用户组 : </label>
         <select name="groupid">
-            <c:forEach items="${groupList }" var="item">
-                <option value="${item. }">${item.name }</option>
+            <c:forEach items="${groupList }" var="itidem">
+                <option value="${item.id }">${item.name }</option>
             </c:forEach>
         </select>
         <br/>
