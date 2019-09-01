@@ -3,13 +3,55 @@
 <mapper namespace="dao.CommonMapper">
 
     <select id="selectUser" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-       select * from user where id=#{id}
+       select * from user where username=#{username} and password=#{password}
     </select>
 
     <select id="selectGroup" resultType="java.util.HashMap">
         select *  from  groups
     </select>
 
+    <select id="selectRole" resultType="java.util.HashMap">
+        select *  from  role
+    </select>
+
+    <select id="selectMenu" resultType="java.util.HashMap">
+        select *  from  menu
+    </select>
+
+    <select id="insertRole" parameterType="java.util.HashMap">
+        INSERT INTO role(name) VALUES (#{name});
+    </select>
+
+    <select id="selectRoleId" parameterType="java.util.HashMap" resultType="java.lang.String">
+        select id from role where name=#{name}
+    </select>
+
+    <select id="insertRole_Menu" parameterType="java.util.HashMap">
+        INSERT INTO role_menu(role_id,menu_id) VALUES (#{role_id},#{menu_id});
+    </select>
+
+    <select id="insertUser" parameterType="java.util.HashMap">
+        INSERT INTO user(username,password) VALUES (#{username},#{password});
+    </select>
+
+    <select id="selectUserId" parameterType="java.util.HashMap" resultType="java.lang.String">
+        select id from user where username=#{username} and password=#{password}
+    </select>
+
+    <select id="insertUser_group" parameterType="java.util.HashMap">
+        INSERT INTO user_group(user_id,group_id) VALUES (#{userid},#{groupid});
+    </select>
+
+    <select id="insertUser_role" parameterType="java.util.HashMap">
+        INSERT INTO user_role(user_id,role_id) VALUES (#{userid},#{roleid});
+    </select>
+
+    <select id="selectMenuUser" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select * from menu a where a.id
+    in(select menu_id from role_menu b where b.role_id
+    in(select role_id from user_role c where c.user_id=#{userid}));
+
+    </select>
 
 
 </mapper>

@@ -11,6 +11,7 @@
 	<groupId>com.gao</groupId>
 	<artifactId>rbacdemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>rbacdemo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -60,12 +61,23 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+        <plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.4.2.RELEASE</version>
 			</plugin>
-		</plugins>
+        </plugins>
+        <resources>
+				<resource>
+					<directory>src/main/webapp</directory>
+					<targetPath>META-INF/resources</targetPath>
+				</resource>
+				<resource>
+					<directory>src/main/resources</directory>
+				</resource>
+        </resources>
+
 	</build>
 
 </project>
