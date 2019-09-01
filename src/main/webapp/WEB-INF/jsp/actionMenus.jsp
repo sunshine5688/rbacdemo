@@ -9,12 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>error</title>
+    <title>menu</title>
 </head>
 <body>
 
-<p style="color:red;">${errormsg}</p>
-<a href="/view/Dmenu">返回首页</a><br/><br/>
+  您请求的url是： <p style="color:blue;">${message}</p><br/>
+  并且具有此权限
+  <a href="/view/Dmenu">返回首页</a><br/><br/>
 
 
 </body>

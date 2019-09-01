@@ -98,6 +98,8 @@ public class MainControl {
 
     @RequestMapping("/menu*")
     public String menu(HttpServletRequest request) {
-        return "error";
+        request.setAttribute("message",request.getRequestURI());
+
+        return "actionMenus";
     }
 }
