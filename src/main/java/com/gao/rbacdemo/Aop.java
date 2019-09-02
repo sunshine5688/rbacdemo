@@ -19,7 +19,7 @@ public class Aop extends WebMvcConfigurerAdapter{
                 System.out.println("拦截器********************************************");
                 String url = request.getRequestURI();
                 System.out.println("*******url:" + url);
-                if(url.contains("index")||url.contains("login")){
+                if(url.contains("index")||url.contains("login")||url.contains("error")){
                     System.out.println("通过了拦截器*************");
                     return true;
                 }

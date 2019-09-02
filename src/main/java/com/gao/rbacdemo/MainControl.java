@@ -65,6 +65,9 @@ public class MainControl {
     public String init_addrole(HttpServletRequest request) {
         List menuList = commonMapper.selectMenu();
         request.setAttribute("menuList",menuList);
+        // 角色组
+        List roleList = commonMapper.selectRole();
+        request.setAttribute("roleList",roleList);
         return "addrole";
     }
     @RequestMapping("/addrole")
@@ -79,11 +82,21 @@ public class MainControl {
 
 
         String[] menus = request.getParameterValues("menus");
-        System.out.println(rolename);
-        for (String menu : menus) {
-            map.put("menu_id",menu);
-            commonMapper.insertRole_Menu(map);
+        if(null != menus) {
+            for (String menu : menus) {
+                map.put("menu_id", menu);
+                commonMapper.insertRole_Menu(map);
+            }
         }
+        
+        String[] roles = request.getParameterValues("roles");
+        if(null != roles) {
+            for (String role : roles) {
+                map.put("exclude_role_id", role);
+                commonMapper.insertExclude_role(map);
+            }
+        }
+        
         return "success";
     }
 

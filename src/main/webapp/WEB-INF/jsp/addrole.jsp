@@ -15,11 +15,16 @@
 </head>
 <body>
     <form action="/view/addrole" method="post">
-        <label for="rolename">角色名</label>
+        <%--@declare id="menus"--%><label for="rolename">角色名</label>
         <input id="rolename" type="text" name="rolename"/><br/>
         <label for="menus">菜单 : </label><br/>
         <c:forEach items="${menuList }" var="item">
             <input type="checkbox" name="menus" value="${item.id}"> ${item.name} &nbsp;
+        </c:forEach>
+        <br/>
+        <label for="roles">互斥角色 : </label><br/>
+        <c:forEach items="${roleList }" var="item">
+            <input type="checkbox" name="roles" value="${item.id}"> ${item.name} &nbsp;
         </c:forEach>
         <br/>
         <input type="submit" value="添加角色">

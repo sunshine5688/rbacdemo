@@ -53,5 +53,9 @@
 
     </select>
 
+    <select id="insertExclude_role" parameterType="java.util.HashMap">
+        INSERT INTO exclude_role(role_id,exclude_role_id) VALUES (#{role_id},#{exclude_role_id});
+    </select>
+
 
 </mapper>
