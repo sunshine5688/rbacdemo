@@ -23,6 +23,7 @@ public class Aop extends WebMvcConfigurerAdapter{
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
                 System.out.println("拦截器********************************************");
                 String url = request.getRequestURI();
+                System.out.println("请求的url:" + url);
                 if(url.contains("index")||url.contains("login")||url.contains("error")|| url.contains("Dmenu")){
                     System.out.println("通过了拦截器*************");
                     return true;
@@ -35,6 +36,7 @@ public class Aop extends WebMvcConfigurerAdapter{
                 }
                 List roles = user.getRoles();
                 if(!roles.contains(url.substring(url.lastIndexOf("/") + 1))){
+                    System.out.println("没有权限。。。");
                     request.setAttribute("errormsg","没有权限！！！");
                     request.getRequestDispatcher( "/view/error" ).forward( request,response );
                     return false;
