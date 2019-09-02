@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/view")
@@ -53,6 +54,35 @@ public class MainControl {
 
         String[] roles = request.getParameterValues("roles");
         if(null != roles) {
+            //        验证其中角色是否存在互斥
+            for (String role : roles) {
+                HashMap map1 = new HashMap();
+                map1.put("role_id",role);
+                for (String role1 : roles) {
+                    map1.put("exclude_role_id",role1);
+                    Object object = commonMapper.selectExclude_role(map1);
+                    if(null != object){
+                        request.setAttribute("errormsg","角色：" + ((Map)object).get("role_id") + "与"
+                        + "角色：" + ((Map)object).get("exclude_role_id") + "冲突");
+                        return "error";
+                    }
+                }
+            }
+            for (String role : roles) {
+                HashMap map1 = new HashMap();
+                map1.put("exclude_role_id",role);
+                for (String role1 : roles) {
+                    map1.put("role_id",role1);
+                    Object object = commonMapper.selectExclude_role(map1);
+                    if(null != object){
+                        request.setAttribute("errormsg","角色：" + ((Map)object).get("role_id") + "与"
+                                + "角色：" + ((Map)object).get("exclude_role_id") + "冲突");
+                        return "error";
+                    }
+                }
+            }
+
+
             for (String role : roles) {
                 map.put("roleid", role);
                 commonMapper.insertUser_role(map);

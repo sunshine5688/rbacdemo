@@ -45,5 +45,8 @@
     <a href="/view/menu8">菜单8</a><br/><br/>
 </c:if>
 
+
+<br/><br/><br/><br/>
+<a href="/index">注销</a><br/><br/>
 </body>
 </html>

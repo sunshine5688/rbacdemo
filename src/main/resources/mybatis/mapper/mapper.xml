@@ -57,5 +57,9 @@
         INSERT INTO exclude_role(role_id,exclude_role_id) VALUES (#{role_id},#{exclude_role_id});
     </select>
 
+    <select id="selectExclude_role" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+       select * from exclude_role where role_id=#{role_id} and exclude_role_id=#{exclude_role_id};
+    </select>
+
 
 </mapper>
