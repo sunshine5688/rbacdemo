@@ -145,4 +145,10 @@ public class MainControl {
 
         return "actionMenus";
     }
+
+    @RequestMapping("/error")
+    public String error(HttpServletRequest request) {
+
+        return "error";
+    }
 }
