@@ -32,6 +32,11 @@ public class Aop extends WebMvcConfigurerAdapter{
                     request.getRequestDispatcher( "/aoperr" ).forward( request,response );
                     return false;
                 }
+                if("admin".equals(user.getName())){
+                    System.out.println("admin用戶，有全部权限！");
+                    return true;
+                }
+
                 List roles = user.getRoles();
                 if(!roles.contains(url.substring(url.lastIndexOf("/") + 1))){
                     System.out.println("没有权限。。。");

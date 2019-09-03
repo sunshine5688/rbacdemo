@@ -23,4 +23,5 @@ public interface CommonMapper {
     List selectMenuUser(HashMap map);
     Object insertExclude_role(HashMap map);
     Object selectExclude_role(HashMap map);
+    String selectRolename(String id);
 }
