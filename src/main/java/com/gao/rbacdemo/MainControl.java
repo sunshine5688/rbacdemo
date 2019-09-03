@@ -1,10 +1,8 @@
 package com.gao.rbacdemo;
 
-import dao.CommonMapper;
-import entty.User;
-import org.apache.ibatis.session.SqlSession;
+import com.gao.dao.CommonMapper;
+import com.gao.entty.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,7 +62,7 @@ public class MainControl {
                     if(null != object){
                         request.setAttribute("errormsg","角色：" + ((Map)object).get("role_id") + "与"
                         + "角色：" + ((Map)object).get("exclude_role_id") + "冲突");
-                        return "error";
+                        return "aoperror";
                     }
                 }
             }
@@ -77,7 +75,7 @@ public class MainControl {
                     if(null != object){
                         request.setAttribute("errormsg","角色：" + ((Map)object).get("role_id") + "与"
                                 + "角色：" + ((Map)object).get("exclude_role_id") + "冲突");
-                        return "error";
+                        return "aoperror";
                     }
                 }
             }
@@ -144,11 +142,5 @@ public class MainControl {
         request.setAttribute("message",request.getRequestURI());
 
         return "actionMenus";
-    }
-
-    @RequestMapping("/error")
-    public String error(HttpServletRequest request) {
-
-        return "error";
     }
 }

@@ -1,4 +1,4 @@
-package entty;
+package com.gao.entty;
 
 import java.util.List;
 

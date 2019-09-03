@@ -1,7 +1,7 @@
 package com.gao.rbacdemo;
 
-import dao.CommonMapper;
-import entty.User;
+import com.gao.dao.CommonMapper;
+import com.gao.entty.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +24,11 @@ public class LoginControl {
         return "index";
     }
 
+    @RequestMapping("/aoperr")
+    public String error(HttpServletRequest request) {
+        System.out.println("错误信息：" + request.getAttribute("errormsg"));
+        return "aoperror";
+    }
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {

@@ -3,9 +3,7 @@ package com.gao.rbacdemo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import entty.User;
-import org.apache.ibatis.logging.stdout.StdOutImpl;
+import com.gao.entty.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,21 +22,21 @@ public class Aop extends WebMvcConfigurerAdapter{
                 System.out.println("拦截器********************************************");
                 String url = request.getRequestURI();
                 System.out.println("请求的url:" + url);
-                if(url.contains("index")||url.contains("login")||url.contains("error")|| url.contains("Dmenu")){
+                if(url.contains("index")||url.contains("login")||url.contains("aoperr")|| url.contains("Dmenu")){
                     System.out.println("通过了拦截器*************");
                     return true;
                 }
                 User user = (User) request.getSession().getAttribute("user");
                 if(null == user){
                     request.setAttribute("errormsg","系统未登陆");
-                    request.getRequestDispatcher( "/view/error" ).forward( request,response );
+                    request.getRequestDispatcher( "/aoperr" ).forward( request,response );
                     return false;
                 }
                 List roles = user.getRoles();
                 if(!roles.contains(url.substring(url.lastIndexOf("/") + 1))){
                     System.out.println("没有权限。。。");
                     request.setAttribute("errormsg","没有权限！！！");
-                    request.getRequestDispatcher( "/view/error" ).forward( request,response );
+                    request.getRequestDispatcher( "/aoperr" ).forward( request,response );
                     return false;
                 }
 
